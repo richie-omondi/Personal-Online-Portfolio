@@ -1,15 +1,32 @@
 AOS.init();
-// You can also pass an optional settings object
-// below listed default settings
+
 AOS.init({
   
-  // Settings that can be overridden on per-element basis, by `data-aos-*` attributes:
-  offset: 120, // offset (in px) from the original trigger point
-  delay: 0, // values from 0 to 3000, with step 50ms
-  duration: 700, // values from 0 to 3000, with step 50ms
-  easing: 'ease', // default easing for AOS animations
-  once: false, // whether animation should happen only once - while scrolling down
-  mirror: false, // whether elements should animate out while scrolling past them
-  anchorPlacement: 'top-bottom', // defines which position of the element regarding to window should trigger the animation
+ 
+  offset: 120, 
+  delay: 0, 
+  duration: 700, 
+  easing: 'ease', 
+  once: false, 
+  mirror: false, 
+  anchorPlacement: 'top-bottom', 
 
 });
+
+document.querySelector('button').addEventListener('click', (e)=>{
+  e.preventDefault();
+  const contactForm = document.querySelector('#form');
+  const name = document.querySelector('[name="name"]');
+  const email = document.querySelector('[name="email"]');
+  const subject = document.querySelector('[name="subject"]');
+  const content = document.querySelector('[name="content"]');
+  // validation before sending the data
+  if(name.value.length===0 || name.value.length===0 || name.value.length===0){
+    alert('please fill the inputs')
+  }else{
+    let data = new FormData(contactForm);  
+    fetch("_url_here", { method: "POST", body: data });
+    alert('Thank you. your form was submited');
+    contactForm.reset()
+  }
+})
